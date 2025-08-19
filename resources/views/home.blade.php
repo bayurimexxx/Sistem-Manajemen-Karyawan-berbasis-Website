@@ -1,93 +1,131 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistem Management Karyawan</title>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Management Karyawan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-light">
+<body class="font-sans bg-gray-900 m-0 p-0">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">⭐ Peradaban Gemilang</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+  <!-- Navbar -->
+  <nav class="bg-gray-900 shadow-lg fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+
+        <!-- Brand -->
+        <a href="#" class="flex items-center text-white font-bold text-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-yellow-400" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .587l3.668 7.568L24 9.748l-6 5.841L19.335 24 12 19.897 4.665 24 6 15.589 0 9.748l8.332-1.593z"/>
+          </svg>
+          Peradaban Gemilang
+        </a>
+
+        <!-- Hamburger Menu Mobile -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Menu Desktop -->
+        <div class="hidden md:flex items-center space-x-4 relative">
+
+          <!-- Dropdown Login -->
+          <div class="relative">
+            <button id="loginButton" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md">
+              Login
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <!-- Dropdown Login -->
-                    <li class="nav-item dropdown">
-                        <a class="btn btn-light dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown">
-                            Login
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Admin</a></li>
-                            <li><a class="dropdown-item" href="#">Karyawan</a></li>
-                            <li><a class="dropdown-item" href="#">Manager</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Tentang Kami</a></li>
-                </ul>
+            <div id="loginDropdown" class="absolute right-0 hidden bg-white shadow-lg mt-2 rounded-md w-40 z-50">
+              <a href="{{ route('login.admin') }}" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Admin</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Karyawan</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Manager</a>
             </div>
-        </div>
-    </nav>
+          </div>
 
-    <!-- Hero Section -->
-    <header class="bg-white py-5 shadow-sm">
-        <div class="container text-center">
-            <h1 class="display-4 fw-bold text-primary">Sistem Management Karyawan</h1>
-            <p class="lead text-muted">Membantu perusahaan mengatur data pegawai, absensi, dan laporan dengan cepat, aman, dan efisien.</p>
-            <a href="#" class="btn btn-primary btn-lg mt-3"><i class="bi bi-box-arrow-in-right"></i> Mulai Sekarang</a>
-        </div>
-    </header>
-
-    <!-- Fitur -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm border-0 h-100">
-                        <div class="card-body">
-                            <i class="bi bi-people display-4 text-primary"></i>
-                            <h5 class="mt-3">Manajemen Pegawai</h5>
-                            <p class="text-muted">Mengatur data karyawan, jabatan, dan kehadiran secara terpusat.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm border-0 h-100">
-                        <div class="card-body">
-                            <i class="bi bi-calendar-check display-4 text-success"></i>
-                            <h5 class="mt-3">Absensi Online</h5>
-                            <p class="text-muted">Monitoring absensi karyawan lebih mudah dengan sistem digital.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm border-0 h-100">
-                        <div class="card-body">
-                            <i class="bi bi-graph-up display-4 text-warning"></i>
-                            <h5 class="mt-3">Laporan Instan</h5>
-                            <p class="text-muted">Laporan kinerja dan absensi bisa diakses kapanpun dengan cepat.</p>
-                        </div>
-                    </div>
-                </div>
+          <!-- Dropdown Tentang Kami -->
+          <div class="relative">
+            <button id="aboutButton" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md">
+              Tentang Kami
+            </button>
+            <div id="aboutDropdown" class="absolute right-0 hidden bg-white shadow-lg mt-2 rounded-md w-40 z-50">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Tentang Sistem</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Kontak Kami</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Sosial Media</a>
             </div>
+          </div>
+
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer class="bg-primary text-white text-center py-3">
-        <p class="mb-0">&copy; {{ date('Y') }} Sistem Management Karyawan - Peradaban Gemilang</p>
-    </footer>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden mt-2 space-y-1">
+        <a href="{{ route('login.admin') }}" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Admin Login</a>
+        <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Karyawan Login</a>
+        <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Manager Login</a>
+        <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Tentang Sistem</a>
+        <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Kontak Kami</a>
+        <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Sosial Media</a>
+      </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative h-screen flex items-center justify-center text-center bg-cover bg-center pt-16"
+    style="background-image: url('https://images.unsplash.com/photo-1551836022-4c4c79ecde51?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+    
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 px-6">
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">
+        Sistem Management Karyawan
+      </h1>
+      <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
+        Sistem Manajemen Karyawan membantu perusahaan mengatur data pegawai, absensi, dan laporan dengan cepat, aman, dan efisien.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    // Toggle mobile menu
+    const mobileBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Dropdown Login
+    const loginBtn = document.getElementById('loginButton');
+    const loginDropdown = document.getElementById('loginDropdown');
+
+    loginBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      loginDropdown.classList.toggle('hidden');
+      aboutDropdown.classList.add('hidden');
+    });
+
+    // Dropdown Tentang Kami
+    const aboutBtn = document.getElementById('aboutButton');
+    const aboutDropdown = document.getElementById('aboutDropdown');
+
+    aboutBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      aboutDropdown.classList.toggle('hidden');
+      loginDropdown.classList.add('hidden');
+    });
+
+    // Tutup dropdown ketika klik di luar
+    window.addEventListener('click', () => {
+      loginDropdown.classList.add('hidden');
+      aboutDropdown.classList.add('hidden');
+    });
+  </script>
+
 </body>
 </html>
