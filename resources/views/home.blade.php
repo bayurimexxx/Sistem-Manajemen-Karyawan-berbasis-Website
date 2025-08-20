@@ -41,8 +41,8 @@
             </button>
             <div id="loginDropdown" class="absolute right-0 hidden bg-white shadow-lg mt-2 rounded-md w-40 z-50">
               <a href="{{ route('login.admin') }}" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Admin</a>
-              <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Karyawan</a>
-              <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Manager</a>
+              <a href="{{ route('login.karyawan') }}" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Karyawan</a>
+              <a href="{{ route('login.manager') }}" class="block px-4 py-2 hover:bg-gray-100 text-gray-900">Manager</a>
             </div>
           </div>
 
@@ -64,7 +64,7 @@
       <!-- Mobile Menu -->
       <div id="mobile-menu" class="hidden md:hidden mt-2 space-y-1">
         <a href="{{ route('login.admin') }}" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Admin Login</a>
-        <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Karyawan Login</a>
+        <a href="{{ route('login.karyawan') }}" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Karyawan Login</a>
         <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Manager Login</a>
         <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Tentang Sistem</a>
         <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Kontak Kami</a>
