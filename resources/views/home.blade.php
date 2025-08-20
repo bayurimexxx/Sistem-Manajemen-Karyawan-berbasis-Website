@@ -23,7 +23,7 @@
         </div>
 
         <div class="flex items-center space-x-4">
-            <a href="{{ url('/login') }}"
+            <a href="{{ route('login') }}"
                 class="transition bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 hover:-translate-y-1 hover:scale-105 duration-300">
                 Login
             </a>
@@ -63,11 +63,8 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden mt-2 space-y-1">
-        <a href="{{ route('login.admin') }}"
-            class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Admin Login</a>
-        <a href="{{ route('login.karyawan') }}"
-            class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Karyawan Login</a>
-        <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Manager Login</a>
+        <a href="{{ route('login') }}" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">
+            Login</a>
         <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Tentang Sistem</a>
         <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Kontak Kami</a>
         <a href="#" class="block px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-600">Sosial Media</a>

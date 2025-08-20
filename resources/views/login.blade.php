@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin - Sistem Management Karyawan</title>
+    <title>Login - Sistem Management Karyawan</title>
     <script src="https://cdn.tailwindcss.com">
     </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -27,7 +27,7 @@
             Login
         </h3>
 
-        <form action="{{ route('admin.dashboard') }}" method="POST" class="space-y-4">
+        <form action="{{ route('login.submit') }}" method="POST" class="space-y-4">
             @csrf
             <div>
                 <label for="email" class="block text-sm font-medium text-white">Email Admin</label>
@@ -50,7 +50,6 @@
                 Masuk
             </button>
         </form>
-
         <!-- Tombol kembali ke Homepage -->
         <a href="{{ route('home') }}" class="block mt-4 text-center text-gray-200 hover:text-indigo-400 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 16 16">
@@ -59,6 +58,7 @@
             </svg>
             Kembali ke Homepage
         </a>
+
 
         <div class="text-center text-gray-300 text-sm mt-4">
             &copy; {{ date('Y') }} Sistem Management Karyawan

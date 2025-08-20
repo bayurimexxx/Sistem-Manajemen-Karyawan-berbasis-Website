@@ -72,13 +72,13 @@
                     <span>Pengaturan</span>
                 </a>
                 <div class="flex justify-center mt-4">
-                    <!--<form action="{{ route('logout') }}" method="POST">
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
                         @csrf
                         <button type="submit"
-                            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition">
+                            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition">
                             Logout
                         </button>
-                        </form>-->
+                    </form>
                 </div>
 
             </nav>
