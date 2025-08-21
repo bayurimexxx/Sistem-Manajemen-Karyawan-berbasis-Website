@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminAuthController extends Controller
+class AdminController extends Controller
 {
     public function showLogin()
     {
@@ -28,5 +27,30 @@ class AdminAuthController extends Controller
     {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
+    }
+
+    public function dashboard()
+    {
+        return view('admin.dashboard'); // pastikan file resources/views/admin/dashboard.blade.php ada
+    }
+
+    public function absensi()
+    {
+        return view('admin.absensi');
+    }
+
+    public function payroll()
+    {
+        return view('admin.payroll');
+    }
+
+    public function laporan()
+    {
+        return view('admin.laporan');
+    }
+
+    public function settings()
+    {
+        return view('admin.settings');
     }
 }

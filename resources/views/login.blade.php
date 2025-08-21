@@ -30,13 +30,13 @@
         <form action="{{ route('login.submit') }}" method="POST" class="space-y-4">
             @csrf
             <div>
-                <label for="email" class="block text-sm font-medium text-white">Email Admin</label>
+                <label for="email" class="block text-sm font-medium text-white">Masukan Email Anda</label>
                 <input type="email" name="email" id="email" placeholder="Masukkan email admin" required
                     class="mt-1 w-full px-4 py-2 rounded-lg bg-white/90 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
             </div>
 
             <div>
-                <label for="password" class="block text-sm font-medium text-white">Kata Sandi</label>
+                <label for="password" class="block text-sm font-medium text-white">Masukan Kata Sandi</label>
                 <input type="password" name="password" id="password" placeholder="Masukkan kata sandi" required
                     class="mt-1 w-full px-4 py-2 rounded-lg bg-white/90 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
             </div>
