@@ -1,7 +1,5 @@
 @extends('admin.layout.app')
 
-
-
 @section('content')
 <body class="bg-gray-100">
     <div class="flex h-screen">

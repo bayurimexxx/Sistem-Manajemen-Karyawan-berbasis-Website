@@ -16,7 +16,9 @@
 </a>
 
 
-<a href="{{ route('admin.data_karyawan') }}" class="group flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+<a href="{{ route('admin.data_karyawan') }}"
+class="group flex items-center space-x-3 px-4 py-2 rounded-lg transition
+          {{ request()->routeIs('admin.data_karyawan') ? 'bg-blue-600 text-white' : 'hover:bg-blue-600' }}">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 icon-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M17 20h5v-2a4 4 0 00-3-3.87M9 20h6M4 20h5v-2a4 4 0 00-3-3.87M7 10a4 4 0 110-8 4 4 0 010 8zm10 0a4 4 0 110-8 4 4 0 010 8z" />
@@ -25,7 +27,9 @@
     </a>
 
 
-<a href="{{ route('admin.data_manager') }}" class="group flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+<a href="{{ route('admin.data_manager') }}"
+class="group flex items-center space-x-3 px-4 py-2 rounded-lg transition
+          {{ request()->routeIs('admin.data_manager') ? 'bg-blue-600 text-white' : 'hover:bg-blue-600' }}">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 icon-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M17 20h5v-2a4 4 0 00-3-3.87M9 20h6M4 20h5v-2a4 4 0 00-3-3.87M7 10a4 4 0 110-8 4 4 0 010 8zm10 0a4 4 0 110-8 4 4 0 010 8z" />
