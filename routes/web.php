@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\ManagerController;
 
 // Homepage
 Route::get('/', function () {
@@ -41,4 +42,11 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::post('/data-karyawan', [KaryawanController::class, 'store'])->name('admin.data_karyawan.store');
     Route::put('/data-karyawan/{id}', [KaryawanController::class, 'update'])->name('admin.data_karyawan.update');
     Route::delete('/data-karyawan/{id}', [KaryawanController::class, 'destroy'])->name('admin.data_karyawan.destroy');
+
+  // CRUD Data Manager
+Route::get('/data-manager', [ManagerController::class, 'index'])->name('admin.data_manager');
+Route::post('/data-manager', [ManagerController::class, 'store'])->name('admin.data_manager.store');
+Route::put('/data-manager/{id}', [ManagerController::class, 'update'])->name('admin.data_manager.update');
+Route::delete('/data-manager/{id}', [ManagerController::class, 'destroy'])->name('admin.data_manager.destroy');
+
 });

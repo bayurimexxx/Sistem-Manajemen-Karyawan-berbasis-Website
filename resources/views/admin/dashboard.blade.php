@@ -28,6 +28,15 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M17 20h5v-2a4 4 0 00-3-3.87M9 20h6M4 20h5v-2a4 4 0 00-3-3.87M7 10a4 4 0 110-8 4 4 0 010 8zm10 0a4 4 0 110-8 4 4 0 010 8z" />
                     </svg> <span>Data Karyawan</span>
+
+                    <a href="{{ route('admin.data_karyawan') }}"
+                    class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+                    <!-- User group --> <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a4 4 0 00-3-3.87M9 20h6M4 20h5v-2a4 4 0 00-3-3.87M7 10a4 4 0 110-8 4 4 0 010 8zm10 0a4 4 0 110-8 4 4 0 010 8z" />
+                    </svg> <span>Data Manager</span>
+                </a>
                 </a> <a href="" class=" flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition">
                     <!-- Calendar --> <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">

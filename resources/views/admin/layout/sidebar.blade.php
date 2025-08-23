@@ -4,6 +4,7 @@
     <nav class="space-y-2">
         <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition">Dashboard</a>
         <a href="{{ route('admin.data_karyawan') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition">Data Karyawan</a>
+        <a href="{{ route('admin.data_manager') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition">Data Manager</a>
         <a href="{{ route('admin.absensi') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition">Absensi</a>
         <a href="{{ route('admin.payroll') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition">Payroll</a>
         <a href="{{ route('admin.laporan') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition">Laporan</a>
