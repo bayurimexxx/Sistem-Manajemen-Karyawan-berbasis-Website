@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-6">Data manager</h2>
+    <h2 class="text-2xl font-bold mb-6">Data Manager</h2>
 
     {{-- Alert --}}
     @if(session('success'))

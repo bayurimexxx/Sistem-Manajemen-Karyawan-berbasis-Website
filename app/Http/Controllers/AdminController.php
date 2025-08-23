@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Karyawan;
 
 class AdminController extends Controller
 {
@@ -30,9 +31,10 @@ class AdminController extends Controller
     }
 
     public function dashboard()
-    {
-        return view('admin.dashboard'); // pastikan file resources/views/admin/dashboard.blade.php ada
-    }
+{
+    $jumlahKaryawan = Karyawan::count(); // ambil jumlah karyawan dari database
+    return view('admin.dashboard', compact('jumlahKaryawan'));
+}
 
     public function absensi()
     {
