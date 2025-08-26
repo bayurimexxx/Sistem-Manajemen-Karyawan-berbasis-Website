@@ -71,14 +71,22 @@ class="group flex items-center space-x-3 px-4 py-2 rounded-lg transition
     </svg>
     <span>Laporan</span>
 </a>
+<a href="{{ route('admin.settings') }}" 
+   class="group flex items-center space-x-3 px-4 py-2 rounded-lg transition
+          {{ request()->routeIs('admin.settings') ? 'bg-blue-600 text-white' : 'hover:bg-blue-600' }}">
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="w-5 h-5 icon-bounce" 
+         fill="none" 
+         viewBox="0 0 24 24" 
+         stroke="currentColor">
+        <path stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2"
+              d="M11.983 13.998a2 2 0 110-3.996 2 2 0 010 3.996zM4.94 4.94l2.828 2.829m8.485 8.484l2.829 2.829m0-11.313l-2.829 2.829M7.768 16.253l-2.829 2.829" />
+    </svg>
+    <span>Pengaturan</span>
+</a>
 
-    <a href="#" class="group flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 icon-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M11.983 13.998a2 2 0 110-3.996 2 2 0 010 3.996zM4.94 4.94l2.828 2.829m8.485 8.484l2.829 2.829m0-11.313l-2.829 2.829M7.768 16.253l-2.829 2.829" />
-      </svg>
-      <span>Pengaturan</span>
-    </a>
 
     <div class="flex justify-center mt-4">
       <form action="{{ route('logout') }}" method="POST" class="inline">
