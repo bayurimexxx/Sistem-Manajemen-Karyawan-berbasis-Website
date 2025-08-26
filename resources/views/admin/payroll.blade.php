@@ -1,6 +1,7 @@
 @extends('admin.layout.app')
 
 @section('content')
+<div class="space-y-8 animate-fade-in">
 <div class="p-6">
     <h2 class="text-2xl font-bold mb-6">Payroll</h2>
 
@@ -37,18 +38,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-center">
-                    <td class="border border-gray-300 p-2">1</td>
-                    <td class="border border-gray-300 p-2">Wily Wibisono</td>
-                    <td class="border border-gray-300 p-2">Staff</td>
-                    <td class="border border-gray-300 p-2">Rp 5.000.000</td>
-                    <td class="border border-gray-300 p-2">Rp 500.000</td>
-                    <td class="border border-gray-300 p-2">Rp 200.000</td>
-                    <td class="border border-gray-300 p-2">Rp 5.300.000</td>
-                    <td class="border border-gray-300 p-2 text-green-600 font-semibold">Sudah Dibayar</td>
-                </tr>
+                
             </tbody>
         </table>
     </div>
 </div>
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+</style>
 @endsection
