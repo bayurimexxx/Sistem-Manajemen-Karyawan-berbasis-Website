@@ -51,8 +51,9 @@ class AdminController extends Controller
         return view('admin.laporan');
     }
 
-    public function settings()
-    {
-        return view('admin.settings');
-    }
+   public function settings()
+{
+    return view('admin.settings'); // file Blade: resources/views/admin/settings.blade.php
+}
+
 }
