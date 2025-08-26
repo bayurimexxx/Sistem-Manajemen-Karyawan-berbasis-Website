@@ -1,99 +1,131 @@
 @extends('admin.layout.app')
 
 @section('content')
-<body class="bg-gray-100">
-    <div class="flex h-screen">
-        <!-- Sidebar otomatis ikut dari layout -->
+<div class="p-6">
+    <h2 class="text-2xl font-bold mb-6">Absensi & Cuti</h2>
 
-        <main class="p-6 w-full">
-            <h2 class="text-2xl font-bold mb-6">Absensi & Cuti</h2>
-
-            <!-- Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Kehadiran -->
-                <div
-                    class="card bg-green-500 text-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 flex items-center space-x-4 opacity-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 17v-2h6v2m-6-4V7a2 2 0 012-2h2a2 2 0 012 2v6m-6 0h6" />
-                    </svg>
-                    <div>
-                        <h3 class="text-4xl font-bold">{{ $jumlahHadir ?? 0 }}</h3>
-                        <p class="mt-2 text-lg">Jumlah Kehadiran</p>
-                    </div>
-                </div>
-
-                <!-- Pengajuan Cuti -->
-                <div
-                    class="card bg-emerald-400 text-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 flex items-center space-x-4 opacity-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 7V3m8 4V3m-9 8h10m-6 4h2m-9 4h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <div>
-                        <h3 class="text-4xl font-bold">{{ $jumlahCuti ?? 0 }}</h3>
-                        <p class="mt-2 text-lg">Pengajuan Cuti</p>
-                    </div>
-                </div>
-
-                <!-- Izin & Sakit -->
-                <div
-                    class="card bg-blue-500 text-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 flex items-center space-x-4 opacity-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 9V7a5 5 0 00-10 0v2a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2z" />
-                    </svg>
-                    <div>
-                        <h3 class="text-4xl font-bold">{{ $jumlahIzin ?? 0 }}</h3>
-                        <p class="mt-2 text-lg">Izin & Sakit</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tabel Absensi -->
-            <div class="mt-10 bg-white rounded-xl shadow p-6">
-                <h3 class="text-xl font-bold mb-4">Daftar Absensi</h3>
-                <table class="min-w-full table-auto">
-                    <thead>
-                        <tr class="bg-gray-200 text-gray-700">
-                            <th class="px-4 py-2 text-left">Nama</th>
-                            <th class="px-4 py-2 text-left">Tanggal</th>
-                            <th class="px-4 py-2 text-left">Status</th>
-                            <th class="px-4 py-2 text-left">Keterangan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($dataAbsensi ?? [] as $absen)
-                            <tr class="border-b">
-                                <td class="px-4 py-2">{{ $absen->nama }}</td>
-                                <td class="px-4 py-2">{{ $absen->tanggal }}</td>
-                                <td class="px-4 py-2">{{ $absen->status }}</td>
-                                <td class="px-4 py-2">{{ $absen->keterangan }}</td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="px-4 py-2 text-center text-gray-500">Belum ada data absensi</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </main>
+    <!-- Ringkasan -->
+    <div class="grid grid-cols-3 gap-4 mb-6">
+        <div class="bg-green-500 text-white p-6 rounded-lg shadow">
+            <h3 class="text-lg">Jumlah Kehadiran</h3>
+            <p class="text-3xl font-bold">{{ $jumlahHadir }}</p>
+        </div>
+        <div class="bg-emerald-400 text-white p-6 rounded-lg shadow">
+            <h3 class="text-lg">Pengajuan Cuti</h3>
+            <p class="text-3xl font-bold">{{ $jumlahCuti }}</p>
+        </div>
+        <div class="bg-blue-500 text-white p-6 rounded-lg shadow">
+            <h3 class="text-lg">Izin & Sakit</h3>
+            <p class="text-3xl font-bold">{{ $jumlahIzinSakit }}</p>
+        </div>
     </div>
 
-    <script>
-        window.addEventListener("DOMContentLoaded", () => {
-            const cards = document.querySelectorAll(".card");
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.classList.add("animate-fade-up");
-                    card.classList.remove("opacity-0");
-                }, index * 200);
-            });
-        });
-    </script>
-</body>
+    <!-- Daftar Absensi -->
+    <div class="bg-white shadow rounded-lg p-6">
+        <div class="flex justify-between mb-4">
+            <h3 class="font-bold text-lg">Daftar Absensi</h3>
+            
+            <!-- Tombol buka modal -->
+            <button onclick="document.getElementById('modal-absensi').classList.remove('hidden')"
+                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                + Tambah Absensi
+            </button>
+        </div>
+
+        <table class="table-auto w-full border-collapse border border-gray-200">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="border px-4 py-2">Nama</th>
+                    <th class="border px-4 py-2">Tanggal</th>
+                    <th class="border px-4 py-2">Status</th>
+                    <th class="border px-4 py-2">Keterangan</th>
+                    <th class="border px-4 py-2">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($absensis as $absensi)
+                    <tr>
+                        <td class="border px-4 py-2">{{ $absensi->karyawan->name ?? '-' }}</td>
+                        <td class="border px-4 py-2">{{ $absensi->tanggal }}</td>
+                        <td class="border px-4 py-2">{{ $absensi->status }}</td>
+                        <td class="border px-4 py-2">{{ $absensi->keterangan ?? '-' }}</td>
+                        <td class="border px-4 py-2">
+                            <form action="{{ route('admin.absensi.destroy', $absensi->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                                    Hapus
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="text-center p-4">Belum ada data absensi</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal Tambah Absensi -->
+<div id="modal-absensi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative">
+        <h3 class="text-xl font-bold mb-4">Tambah Absensi</h3>
+
+        <form action="{{ route('admin.absensi.store') }}" method="POST">
+            @csrf
+
+            <!-- Pilih Karyawan -->
+            <div class="mb-4">
+                <label for="karyawan_id" class="block text-sm font-medium text-gray-700">Karyawan</label>
+                <select name="karyawan_id" id="karyawan_id" required
+                    class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <option value="">-- Pilih Karyawan --</option>
+                    @foreach($karyawans as $karyawan)
+                        <option value="{{ $karyawan->id }}" {{ old('karyawan_id') == $karyawan->id ? 'selected' : '' }}>
+                            {{ $karyawan->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Tanggal -->
+            <div class="mb-4">
+                <label for="tanggal" class="block text-sm font-medium text-gray-700">Tanggal</label>
+                <input type="date" name="tanggal" id="tanggal" value="{{ old('tanggal') }}" required
+                    class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            </div>
+
+            <!-- Status -->
+            <div class="mb-4">
+                <label for="status" class="block text-sm font-medium text-gray-700">Status Kehadiran</label>
+                <select name="status" id="status" required
+                    class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <option value="Hadir" {{ old('status') == 'Hadir' ? 'selected' : '' }}>Hadir</option>
+                    <option value="Izin"  {{ old('status') == 'Izin' ? 'selected' : '' }}>Izin</option>
+                    <option value="Sakit" {{ old('status') == 'Sakit' ? 'selected' : '' }}>Sakit</option>
+                    <option value="Alpa"  {{ old('status') == 'Alpa' ? 'selected' : '' }}>Alpa</option>
+                </select>
+            </div>
+
+            <!-- Keterangan -->
+            <div class="mb-4">
+                <label for="keterangan" class="block text-sm font-medium text-gray-700">Keterangan (Opsional)</label>
+                <textarea name="keterangan" id="keterangan" rows="3"
+                    class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    placeholder="Tambahkan keterangan jika diperlukan">{{ old('keterangan') }}</textarea>
+            </div>
+
+            <!-- Tombol Aksi -->
+            <div class="flex justify-end space-x-3">
+                <button type="button" onclick="document.getElementById('modal-absensi').classList.add('hidden')"
+                    class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Batal</button>
+                <button type="submit"
+                    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>
 @endsection
