@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title', 'Dashboard Admin')</title>
   <script src="https://cdn.tailwindcss.com"></script>
-   @vite(['resources/css/app.css', 'resources/js/app.js'])
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
   <style>
-    /* Animasi Sidebar */
     @keyframes slideIn {
       from { transform: translateX(-100%); opacity: 0; }
       to { transform: translateX(0); opacity: 1; }
@@ -18,8 +17,6 @@
     }
     .sidebar-enter { animation: slideIn 0.5s ease forwards; }
     .sidebar-exit { animation: slideOut 0.5s ease forwards; }
-
-    /* Hover ikon */
     .icon-bounce { transition: transform 0.3s ease; }
     .group:hover .icon-bounce { transform: translateX(6px) scale(1.1); }
   </style>
@@ -27,7 +24,7 @@
 
 <body class="bg-gray-100">
   <div class="flex h-screen">
-    
+
     {{-- Sidebar --}}
     @include('admin.layout.sidebar')
 
@@ -38,15 +35,30 @@
 
     {{-- Content --}}
     <div class="flex-1 md:ml-64">
+
+      {{-- Header --}}
       <header class="flex items-center justify-between bg-white p-4 shadow-md">
-        <h1 class="text-lg font-semibold">@yield('header', 'Admin')</h1>
-        <button id="menu-btn"
-          class="md:hidden bg-blue-600 text-white px-3 py-2 rounded-lg">☰</button>
+        {{-- Tombol Burger --}}
+        <button id="menu-btn" class="md:hidden text-gray-700 text-2xl">☰</button>
+
+        {{-- Kolom Pencarian --}}
+        <div class="flex-1 mx-4">
+          <input type="text" placeholder="Cari data..."
+            class="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        </div>
+
+        {{-- Profil --}}
+        <div class="flex items-center space-x-3">
+          <span class="hidden md:block text-gray-700 font-medium">Admin</span>
+          <img src="/images/profile.png" alt="Profile"
+            class="w-10 h-10 rounded-full border cursor-pointer">
+        </div>
       </header>
 
-      <div class="p-6 overflow-y-auto">
+      {{-- Main Content --}}
+      <main class="p-6 overflow-y-auto">
         @yield('content')
-      </div>
+      </main>
     </div>
   </div>
 
