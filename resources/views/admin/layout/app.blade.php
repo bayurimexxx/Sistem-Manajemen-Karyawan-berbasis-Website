@@ -41,19 +41,14 @@
         {{-- Tombol Burger --}}
         <button id="menu-btn" class="md:hidden text-gray-700 text-2xl">☰</button>
 
-        {{-- Kolom Pencarian --}}
-        <div class="flex-1 mx-4">
-          <input type="text" placeholder="Cari data..."
-            class="w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-        </div>
-
-        {{-- Profil --}}
-        <div class="flex items-center space-x-3">
-          <span class="hidden md:block text-gray-700 font-medium">Admin</span>
-          <img src="/images/profile.png" alt="Profile"
-            class="w-10 h-10 rounded-full border cursor-pointer">
-        </div>
-      </header>
+       
+  {{-- Profil (pindah ke kanan atas) --}}
+  <div class="flex items-center space-x-3 ml-auto">
+    <span class="hidden md:block text-gray-700 font-medium">Admin</span>
+    <img src="/images/profile.png" alt="Profile"
+      class="w-10 h-10 rounded-full border cursor-pointer">
+  </div>
+</header>
 
       {{-- Main Content --}}
       <main class="p-6 overflow-y-auto">
