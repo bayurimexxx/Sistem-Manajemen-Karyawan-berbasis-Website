@@ -29,12 +29,6 @@
         </div>
     </div>
 
-    <!-- Grafik -->
-    <div class="bg-white p-6 rounded-2xl shadow-lg">
-        <h2 class="text-lg font-semibold mb-4 text-gray-700">Statistik Cuti & Absensi</h2>
-        <canvas id="laporanChart" height="120"></canvas>
-    </div>
-
     <!-- Tabel -->
     <div class="bg-white p-6 rounded-2xl shadow-lg">
         <h2 class="text-lg font-semibold mb-4 text-gray-700">Detail Laporan Bulanan</h2>
@@ -49,29 +43,7 @@
                         <th class="px-4 py-2 text-left">Status</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-200">
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="px-4 py-2">1</td>
-                        <td class="px-4 py-2 font-medium">Rizqi Aditya</td>
-                        <td class="px-4 py-2">2 Hari</td>
-                        <td class="px-4 py-2">95%</td>
-                        <td class="px-4 py-2"><span class="px-3 py-1 text-xs bg-green-100 text-green-600 rounded-full">Baik</span></td>
-                    </tr>
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="px-4 py-2">2</td>
-                        <td class="px-4 py-2 font-medium">Andi Saputra</td>
-                        <td class="px-4 py-2">0 Hari</td>
-                        <td class="px-4 py-2">98%</td>
-                        <td class="px-4 py-2"><span class="px-3 py-1 text-xs bg-green-100 text-green-600 rounded-full">Baik</span></td>
-                    </tr>
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="px-4 py-2">3</td>
-                        <td class="px-4 py-2 font-medium">Siti Aminah</td>
-                        <td class="px-4 py-2">4 Hari</td>
-                        <td class="px-4 py-2">85%</td>
-                        <td class="px-4 py-2"><span class="px-3 py-1 text-xs bg-yellow-100 text-yellow-600 rounded-full">Perlu Perhatian</span></td>
-                    </tr>
-                </tbody>
+                
             </table>
         </div>
     </div>

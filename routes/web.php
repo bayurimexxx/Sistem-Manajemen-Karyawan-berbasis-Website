@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\PayrollController;
 
 // ----------------- HOMEPAGE -----------------
 Route::get('/', function () {
@@ -50,8 +51,20 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::put('/data-manager/{id}', [ManagerController::class, 'update'])->name('admin.data_manager.update');
     Route::delete('/data-manager/{id}', [ManagerController::class, 'destroy'])->name('admin.data_manager.destroy');
 
+    Route::resource('payroll', App\Http\Controllers\PayrollController::class, [
+    'as' => 'admin'
+]);
+
     // CRUD Absensi (sudah otomatis dengan resource)
     Route::resource('absensi', AbsensiController::class, [
         'as' => 'admin'
     ]);
+
+    //payroll
+    Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    Route::resource('payroll', App\Http\Controllers\PayrollController::class, [
+    'as' => 'admin'
+    ]);
+});
+
 });

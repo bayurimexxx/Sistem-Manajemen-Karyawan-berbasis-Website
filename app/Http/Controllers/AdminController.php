@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Karyawan;
+use App\Models\Payroll;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -42,8 +45,25 @@ class AdminController extends Controller
     }
 
     public function payroll()
+    
     {
-        return view('admin.payroll');
+        $totalKaryawan = Karyawan::count();
+
+        // default jika tabel payrolls belum ada
+        $payrolls = collect();
+        $totalGaji = 0;
+        $sudahDibayar = 0;
+
+        if (Schema::hasTable('payrolls')) {
+            $payrolls = Payroll::with('karyawan')->latest()->get();
+            // jika kolom total_gaji ada, pakai itu. jika belum, hitung manual:
+            $totalGaji = $payrolls->sum(function ($p) {
+                return $p->total_gaji ?? (($p->gaji_pokok ?? 0) + ($p->tunjangan ?? 0) - ($p->potongan ?? 0));
+            });
+            $sudahDibayar = $payrolls->where('status', 'Dibayar')->count();
+        }
+
+        return view('admin.payroll', compact('totalKaryawan', 'totalGaji', 'sudahDibayar', 'payrolls'));
     }
 
     public function laporan()

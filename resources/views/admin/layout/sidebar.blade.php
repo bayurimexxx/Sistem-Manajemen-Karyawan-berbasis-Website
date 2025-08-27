@@ -49,7 +49,7 @@ class="group flex items-center space-x-3 px-4 py-2 rounded-lg transition
 
 
 
-   <a href="{{ route('admin.payroll') }}" 
+   <a href="{{ route('admin.payroll.index') }}" 
    class="group flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition text-white">
     <svg xmlns="http://www.w3.org/2000/svg" 
          class="w-5 h-5 icon-bounce" 
