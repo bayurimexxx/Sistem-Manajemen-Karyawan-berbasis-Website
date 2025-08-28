@@ -1,100 +1,64 @@
 @extends('admin.layout.app')
 
-@section('title', 'Laporan')
-
 @section('content')
-<div class="space-y-8 animate-fade-in">
-
-    <!-- Header -->
-    <div class="flex items-center justify-between">
-        <h1 class="text-3xl font-bold text-gray-800 tracking-wide">📊 Laporan Bulanan</h1>
-        <button class="px-5 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 hover:opacity-90 text-white rounded-lg shadow-lg transition">
-            ⬇ Export PDF
-        </button>
-    </div>
+<div class="p-6 space-y-6">
+    <h2 class="text-2xl font-bold mb-6">Laporan Bulanan</h2>
 
     <!-- Ringkasan -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-gradient-to-r from-green-400 to-green-600 text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition">
+        <div class="bg-green-500 text-white p-6 rounded-xl shadow">
             <h3 class="text-lg">Jumlah Karyawan</h3>
-            <p class="text-3xl font-bold">120</p>
+            <p class="text-3xl font-bold">{{ $totalKaryawan }}</p>
         </div>
-        <div class="bg-gradient-to-r from-cyan-400 to-cyan-600 text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition">
+        <div class="bg-blue-500 text-white p-6 rounded-xl shadow">
             <h3 class="text-lg">Total Cuti</h3>
-            <p class="text-3xl font-bold">35</p>
+            <p class="text-3xl font-bold">{{ $totalCuti }}</p>
         </div>
-        <div class="bg-gradient-to-r from-pink-400 to-pink-600 text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition">
+        <div class="bg-pink-500 text-white p-6 rounded-xl shadow">
             <h3 class="text-lg">Laporan Dibuat</h3>
-            <p class="text-3xl font-bold">12</p>
+            <p class="text-3xl font-bold">{{ $laporanDibuat }}</p>
         </div>
     </div>
 
-    <!-- Tabel -->
-    <div class="bg-white p-6 rounded-2xl shadow-lg">
-        <h2 class="text-lg font-semibold mb-4 text-gray-700">Detail Laporan Bulanan</h2>
-        <div class="overflow-x-auto">
-            <table class="min-w-full border border-gray-200 rounded-lg">
-                <thead class="bg-gray-100">
-                    <tr class="text-gray-600">
-                        <th class="px-4 py-2 text-left">No</th>
-                        <th class="px-4 py-2 text-left">Nama Karyawan</th>
-                        <th class="px-4 py-2 text-left">Cuti</th>
-                        <th class="px-4 py-2 text-left">Absensi</th>
-                        <th class="px-4 py-2 text-left">Status</th>
+    <!-- Detail Laporan -->
+    <div class="bg-white rounded-xl shadow p-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold">Detail Laporan Bulanan</h3>
+            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                Export PDF
+            </a>
+        </div>
+
+        <table class="w-full border-collapse border border-gray-200">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="border px-4 py-2">No</th>
+                    <th class="border px-4 py-2">Nama Karyawan</th>
+                    <th class="border px-4 py-2">Cuti</th>
+                    <th class="border px-4 py-2">Absensi</th>
+                    <th class="border px-4 py-2">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($laporans as $index => $laporan)
+                    <tr>
+                        <td class="border px-4 py-2">{{ $index + 1 }}</td>
+                        <td class="border px-4 py-2">{{ $laporan->karyawan->name ?? '-' }}</td>
+                        <td class="border px-4 py-2">{{ $laporan->cuti }}</td>
+                        <td class="border px-4 py-2">{{ $laporan->absensi }}</td>
+                        <td class="border px-4 py-2">
+                            <span class="px-2 py-1 rounded text-white {{ $laporan->status == 'Lengkap' ? 'bg-green-500' : 'bg-red-500' }}">
+                                {{ $laporan->status }}
+                            </span>
+                        </td>
                     </tr>
-                </thead>
-                
-            </table>
-        </div>
+                @empty
+                    <tr>
+                        <td colspan="5" class="text-center py-4">Belum ada data laporan</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
-
 </div>
-
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctx = document.getElementById('laporanChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
-            datasets: [
-                {
-                    label: 'Cuti',
-                    data: [5, 7, 4, 6, 8, 3],
-                    backgroundColor: 'rgba(239, 68, 68, 0.7)', // merah
-                    borderRadius: 8
-                },
-                {
-                    label: 'Absensi (%)',
-                    data: [95, 96, 92, 97, 93, 90],
-                    backgroundColor: 'rgba(37, 99, 235, 0.7)', // biru
-                    borderRadius: 8
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { position: 'top' }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: { stepSize: 10 }
-                }
-            }
-        }
-    });
-</script>
-
-<style>
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out;
-}
-</style>
 @endsection

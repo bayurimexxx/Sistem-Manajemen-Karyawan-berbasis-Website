@@ -7,6 +7,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\PayrollController;
+use App\Http\Controllers\LaporanController;
 
 // ----------------- HOMEPAGE -----------------
 Route::get('/', function () {
@@ -53,9 +54,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
     Route::resource('payroll', App\Http\Controllers\PayrollController::class, [
     'as' => 'admin'
-]);
+    ]);
 
-    // CRUD Absensi (sudah otomatis dengan resource)
+    // CRUD Absensi
     Route::resource('absensi', AbsensiController::class, [
         'as' => 'admin'
     ]);
@@ -66,5 +67,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     'as' => 'admin'
     ]);
 });
+    //laporan
+    Route::get('/admin/laporan', [LaporanController::class, 'index'])->name('admin.laporan');
+
 
 });

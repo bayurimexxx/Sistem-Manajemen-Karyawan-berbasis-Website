@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Karyawan;
 use App\Models\Payroll;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Laporan;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -68,7 +68,15 @@ class AdminController extends Controller
 
     public function laporan()
     {
-        return view('admin.laporan');
+        $totalKaryawan = Karyawan::count();
+        $totalCuti      = Laporan::sum('cuti');
+        $laporanDibuat  = Laporan::count();
+
+        $laporans = Laporan::with('karyawan')->get();
+
+        return view('admin.laporan', compact(
+            'totalKaryawan', 'totalCuti', 'laporanDibuat', 'laporans'
+        ));
     }
 
    public function settings()
