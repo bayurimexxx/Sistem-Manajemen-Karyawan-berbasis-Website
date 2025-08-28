@@ -2,22 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Laporan;
 use App\Models\Karyawan;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class LaporanController extends Controller
 {
     public function index()
     {
-        // Hitung ringkasan
-        $totalKaryawan = Karyawan::count();
-        $totalCuti = Laporan::sum('cuti');
-        $laporanDibuat = Laporan::count();
-
-        // Ambil detail laporan dengan relasi ke karyawan
         $laporans = Laporan::with('karyawan')->get();
 
-        return view('admin.laporan', compact('totalKaryawan', 'totalCuti', 'laporanDibuat', 'laporans'));
+        $totalKaryawan = Karyawan::count();
+        $totalCuti = $laporans->sum('cuti');
+        $totalAbsensi = $laporans->sum('absensi');
+        $laporanDibuat = $laporans->count();
+
+        return view('admin.laporan', compact(
+            'laporans',
+            'totalKaryawan',
+            'totalCuti',
+            'totalAbsensi',
+            'laporanDibuat'
+        ));
+    }
+    public function exportPdf()
+    {
+        $laporans = Laporan::with('karyawan')->get();
+
+        $pdf = Pdf::loadView('admin.laporan_pdf', compact('laporans'))
+                  ->setPaper('a4', 'landscape');
+
+        return $pdf->download('laporan-bulanan.pdf');
     }
 }

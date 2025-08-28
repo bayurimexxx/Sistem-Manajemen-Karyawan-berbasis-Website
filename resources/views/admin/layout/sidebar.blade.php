@@ -49,8 +49,19 @@ class="group flex items-center space-x-3 px-4 py-2 rounded-lg transition
 
 
 
-   <a href="{{ route('admin.payroll.index') }}" 
-   class="group flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition text-white">
+   <a href="{{ route('admin.payroll.index') }}"
+   class="group flex items-center space-x-3 px-4 py-2 rounded-lg transition
+          {{ request()->routeIs('admin.payroll.*') ? 'bg-blue-600 text-white' : 'hover:bg-blue-600' }}">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V4m0 12v4" />
+    </svg>
+    <span>Payroll</span>
+</a>
+
+    <a href="{{ route('admin.laporan') }}" 
+   class="group flex items-center space-x-3 px-4 py-2 rounded-lg transition
+          {{ request()->routeIs('admin.laporan') ? 'bg-blue-600 text-white' : 'hover:bg-blue-600' }}">
     <svg xmlns="http://www.w3.org/2000/svg" 
          class="w-5 h-5 icon-bounce" 
          fill="none" 
@@ -59,15 +70,6 @@ class="group flex items-center space-x-3 px-4 py-2 rounded-lg transition
         <path stroke-linecap="round" 
               stroke-linejoin="round" 
               stroke-width="2"
-              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V4m0 12v4" />
-    </svg>
-    <span>Payroll</span>
-</a>
-
-    <a href="{{ route('admin.laporan') }}" 
-   class="group flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-blue-600 transition">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 icon-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M3 3v18h18M9 17V9m4 8v-5m4 5V5" />
     </svg>
     <span>Laporan</span>

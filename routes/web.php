@@ -52,6 +52,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::put('/data-manager/{id}', [ManagerController::class, 'update'])->name('admin.data_manager.update');
     Route::delete('/data-manager/{id}', [ManagerController::class, 'destroy'])->name('admin.data_manager.destroy');
 
+    Route::get('/laporan/export-pdf', [App\Http\Controllers\LaporanController::class, 'exportPdf'])->name('admin.laporan.exportPdf');
+
+
     Route::resource('payroll', App\Http\Controllers\PayrollController::class, [
     'as' => 'admin'
     ]);

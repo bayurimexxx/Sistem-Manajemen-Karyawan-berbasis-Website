@@ -1,6 +1,7 @@
 @extends('admin.layout.app')
 
 @section('content')
+<div class="space-y-8 animate-fade-in">
 <div class="p-6 space-y-6">
     <h2 class="text-2xl font-bold mb-6">Laporan Bulanan</h2>
 
@@ -24,9 +25,11 @@
     <div class="bg-white rounded-xl shadow p-6">
         <div class="flex justify-between items-center mb-4">
             <h3 class="text-xl font-semibold">Detail Laporan Bulanan</h3>
-            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                Export PDF
-            </a>
+            <a href="{{ route('admin.laporan.exportPdf') }}" 
+   class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+   Export PDF
+</a>
+
         </div>
 
         <table class="w-full border-collapse border border-gray-200">
@@ -60,5 +63,14 @@
             </tbody>
         </table>
     </div>
+    <style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+</style>
 </div>
 @endsection
