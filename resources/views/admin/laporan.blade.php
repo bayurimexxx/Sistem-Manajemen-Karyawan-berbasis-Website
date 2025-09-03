@@ -11,10 +11,6 @@
             <h3 class="text-lg">Jumlah Karyawan</h3>
             <p class="text-3xl font-bold">{{ $totalKaryawan }}</p>
         </div>
-        <div class="bg-blue-500 text-white p-6 rounded-xl shadow">
-            <h3 class="text-lg">Total Cuti</h3>
-            <p class="text-3xl font-bold">{{ $totalCuti }}</p>
-        </div>
         <div class="bg-pink-500 text-white p-6 rounded-xl shadow">
             <h3 class="text-lg">Laporan Dibuat</h3>
             <p class="text-3xl font-bold">{{ $laporanDibuat }}</p>
@@ -25,43 +21,50 @@
     <div class="bg-white rounded-xl shadow p-6">
         <div class="flex justify-between items-center mb-4">
             <h3 class="text-xl font-semibold">Detail Laporan Bulanan</h3>
-            <a href="{{ route('admin.laporan.exportPdf') }}" 
-   class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-   Export PDF
-</a>
 
-        </div>
+<div class="flex gap-2">
+    <a href="{{ route('admin.laporan.exportPdf') }}" 
+       class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+       Export PDF
+    </a>
+    <a href="{{ route('admin.laporan.exportExcel') }}" 
+       class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+       Export Excel
+    </a>
+</div>
 
-        <table class="w-full border-collapse border border-gray-200">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="border px-4 py-2">No</th>
-                    <th class="border px-4 py-2">Nama Karyawan</th>
-                    <th class="border px-4 py-2">Cuti</th>
-                    <th class="border px-4 py-2">Absensi</th>
-                    <th class="border px-4 py-2">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($laporans as $index => $laporan)
-                    <tr>
-                        <td class="border px-4 py-2">{{ $index + 1 }}</td>
-                        <td class="border px-4 py-2">{{ $laporan->karyawan->name ?? '-' }}</td>
-                        <td class="border px-4 py-2">{{ $laporan->cuti }}</td>
-                        <td class="border px-4 py-2">{{ $laporan->absensi }}</td>
-                        <td class="border px-4 py-2">
-                            <span class="px-2 py-1 rounded text-white {{ $laporan->status == 'Lengkap' ? 'bg-green-500' : 'bg-red-500' }}">
-                                {{ $laporan->status }}
-                            </span>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="text-center py-4">Belum ada data laporan</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+    </div>
+<table class="w-full border-collapse border border-gray-200">
+    <thead class="bg-gray-100">
+        <tr>
+            <th class="border px-4 py-2">No</th>
+            <th class="border px-4 py-2">Nama Karyawan</th>
+            <th class="border px-4 py-2">Cuti</th>
+            <th class="border px-4 py-2">Absensi</th>
+            <th class="border px-4 py-2">Total Gaji</th>
+        </tr>
+    </thead>
+    <tbody>
+        @forelse($laporans as $index => $laporan)
+            <tr>
+                <td class="border px-4 py-2">{{ $index + 1 }}</td>
+                <td class="border px-4 py-2">{{ $laporan->karyawan->name ?? '-' }}</td>
+                <td class="border px-4 py-2">{{ $laporan->cuti }}</td>
+                <td class="border px-4 py-2">{{ $laporan->absensi }}</td>
+               <td class="border px-4 py-2 font-bold text-green-600">
+    Rp {{ number_format($laporan->karyawan->payrolls->sum('total_gaji'), 0, ',', '.') }}
+</td>
+
+            </tr>
+        @empty
+            <tr>
+                <td colspan="5" class="text-center py-4">Belum ada data laporan</td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
+
+
     </div>
     <style>
 @keyframes fadeIn {

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 class KaryawanController extends Controller
 {
     public function index()
-    {
+    {   
         $karyawans = Karyawan::all();
         return view('admin.data_karyawan', compact('karyawans'));
     }
@@ -82,4 +82,5 @@ class KaryawanController extends Controller
         return redirect()->route('admin.data_karyawan')
                          ->with('success', 'Karyawan berhasil dihapus');
     }
+
 }

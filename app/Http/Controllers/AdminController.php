@@ -7,6 +7,7 @@ use App\Models\Karyawan;
 use App\Models\Payroll;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Laporan;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -35,9 +36,38 @@ class AdminController extends Controller
 
     public function dashboard()
 {
-    $jumlahKaryawan = Karyawan::count(); // ambil jumlah karyawan dari database
-    return view('admin.dashboard', compact('jumlahKaryawan'));
+    $totalKaryawan = Karyawan::count();
+    $totalCuti     = Laporan::sum('cuti');   // kalau ada kolom `cuti`
+    $totalLaporan  = Laporan::count();
+
+    // Data bulanan untuk grafik
+    $bulan = [];
+    $cutiBulanan = [];
+    $laporanBulanan = [];
+
+    for ($i = 5; $i >= 0; $i--) {
+        $m = now()->subMonths($i);
+        $bulan[] = $m->format('M');
+
+        $cutiBulanan[] = Laporan::whereMonth('created_at', $m->month)
+                                ->whereYear('created_at', $m->year)
+                                ->sum('cuti');
+
+        $laporanBulanan[] = Laporan::whereMonth('created_at', $m->month)
+                                   ->whereYear('created_at', $m->year)
+                                   ->count();
+    }
+
+    return view('admin.dashboard', compact(
+        'totalKaryawan',
+        'totalCuti',
+        'totalLaporan',
+        'bulan',
+        'cutiBulanan',
+        'laporanBulanan'
+    ));
 }
+
 
     public function absensi()
     {

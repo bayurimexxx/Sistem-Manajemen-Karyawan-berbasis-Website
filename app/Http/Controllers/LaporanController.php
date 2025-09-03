@@ -1,21 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Laporan;
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+
+
 
 class LaporanController extends Controller
 {
     public function index()
     {
         $laporans = Laporan::with('karyawan')->get();
-
         $totalKaryawan = Karyawan::count();
         $totalCuti = $laporans->sum('cuti');
         $totalAbsensi = $laporans->sum('absensi');
+        $laporans = Laporan::with(['karyawan.payrolls'])->get();
         $laporanDibuat = $laporans->count();
 
         return view('admin.laporan', compact(
@@ -35,4 +37,9 @@ class LaporanController extends Controller
 
         return $pdf->download('laporan-bulanan.pdf');
     }
+
+    public function exportExcel()
+{
+    return Excel::download(new \App\Exports\LaporanExport, 'laporan-bulanan.xlsx');
+}
 }

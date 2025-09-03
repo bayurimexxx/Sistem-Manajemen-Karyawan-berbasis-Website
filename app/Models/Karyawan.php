@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 class Karyawan extends Authenticatable
 {
@@ -24,4 +25,16 @@ class Karyawan extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    // 🔹 Relasi ke Payroll
+    public function payrolls()
+    {
+        return $this->hasMany(Payroll::class, 'karyawan_id');
+    }
+
+    // 🔹 Relasi ke Laporan
+    public function laporans()
+    {
+        return $this->hasMany(Laporan::class, 'karyawan_id');
+    }
 }

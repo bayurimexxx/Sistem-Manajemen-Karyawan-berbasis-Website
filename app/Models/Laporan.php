@@ -13,4 +13,6 @@ class Laporan extends Model
     {
         return $this->belongsTo(Karyawan::class);
     }
+
+    
 }

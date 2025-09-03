@@ -15,14 +15,12 @@ class AbsensiController extends Controller
 
     // Hitung ringkasan absensi
     $jumlahHadir = Absensi::where('status', 'Hadir')->count();
-    $jumlahCuti = Absensi::where('status', 'Cuti')->count();
     $jumlahIzinSakit = Absensi::whereIn('status', ['Izin', 'Sakit'])->count();
 
     return view('admin.absensi', compact(
         'absensis',
         'karyawans',
         'jumlahHadir',
-        'jumlahCuti',
         'jumlahIzinSakit'
     ));
 }

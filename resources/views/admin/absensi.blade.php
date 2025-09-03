@@ -3,17 +3,13 @@
 @section('content')
 <div class="space-y-8 animate-fade-in">
 <div class="p-6">
-    <h2 class="text-2xl font-bold mb-6">Absensi & Cuti</h2>
+    <h2 class="text-2xl font-bold mb-6">Absensi</h2>
 
     <!-- Ringkasan -->
     <div class="grid grid-cols-3 gap-4 mb-6">
         <div class="bg-green-500 text-white p-6 rounded-lg shadow">
             <h3 class="text-lg">Jumlah Kehadiran</h3>
             <p class="text-3xl font-bold">{{ $jumlahHadir }}</p>
-        </div>
-        <div class="bg-emerald-400 text-white p-6 rounded-lg shadow">
-            <h3 class="text-lg">Pengajuan Cuti</h3>
-            <p class="text-3xl font-bold">{{ $jumlahCuti }}</p>
         </div>
         <div class="bg-blue-500 text-white p-6 rounded-lg shadow">
             <h3 class="text-lg">Izin & Sakit</h3>

@@ -8,6 +8,8 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\CutiController;
 
 // ----------------- HOMEPAGE -----------------
 Route::get('/', function () {
@@ -72,6 +74,19 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 });
     //laporan
     Route::get('/admin/laporan', [LaporanController::class, 'index'])->name('admin.laporan');
+
+
+    Route::prefix('admin')->middleware('auth:admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/cuti', [CutiController::class, 'index'])->name('cuti.index');
+    Route::post('/cuti', [CutiController::class, 'store'])->name('cuti.store');
+    Route::delete('/cuti/{id}', [CutiController::class, 'destroy'])->name('cuti.destroy');
+    Route::put('/cuti/{id}', [CutiController::class, 'update'])->name('cuti.update');
+});
+Route::get('/admin/laporan/export-excel', [LaporanController::class, 'exportExcel'])->name('admin.laporan.exportExcel');
 
 
 });
