@@ -34,7 +34,7 @@
             </a>
 
             <div class="relative group">
-                <button class="bg-gray-600 px-4 py-2 rounded-md flex items-center hover:bg-gray-700 transition">
+                <button class="bg-[#2f4858] px-4 py-2 rounded-md flex items-center hover:bg-gray-700 transition">
                     Tentang Kami
                     <svg class="ml-2 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
