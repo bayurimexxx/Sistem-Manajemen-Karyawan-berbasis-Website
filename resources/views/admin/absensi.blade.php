@@ -7,11 +7,11 @@
 
     <!-- Ringkasan -->
     <div class="grid grid-cols-3 gap-4 mb-6">
-        <div class="bg-green-500 text-white p-6 rounded-lg shadow">
+        <div class="bg-[#007b89] text-white p-6 rounded-lg shadow">
             <h3 class="text-lg">Jumlah Kehadiran</h3>
             <p class="text-3xl font-bold">{{ $jumlahHadir }}</p>
         </div>
-        <div class="bg-blue-500 text-white p-6 rounded-lg shadow">
+        <div class="bg-[#2f4858] text-white p-6 rounded-lg shadow">
             <h3 class="text-lg">Izin & Sakit</h3>
             <p class="text-3xl font-bold">{{ $jumlahIzinSakit }}</p>
         </div>
@@ -24,8 +24,10 @@
             
             <!-- Tombol buka modal -->
             <button onclick="document.getElementById('modal-absensi').classList.remove('hidden')"
-                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                + Tambah Absensi
+                 class="bg-gradient-to-r from-[#2f4858] to-[#007b89] 
+         hover:bg-gradient-to-r hover:from-[#007b89] hover:to-[#2f4858] 
+         text-white px-4 py-2 rounded mb-4 transition duration-300">
+                Tambah Absensi
             </button>
         </div>
 
@@ -50,9 +52,18 @@
                             <form action="{{ route('admin.absensi.destroy', $absensi->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
-                                    Hapus
-                                </button>
+                                <button 
+        class="px-3 py-2 rounded flex items-center space-x-1
+               border border-red-500 text-red-500
+               hover:bg-red-500 hover:text-white transition duration-300">
+        <!-- Icon Tempat Sampah Outline -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" 
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3m-9 0h10" />
+        </svg>
+        <span>Delete</span>
+    </button>
                             </form>
                         </td>
                     </tr>

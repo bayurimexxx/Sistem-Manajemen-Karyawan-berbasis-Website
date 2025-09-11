@@ -43,11 +43,19 @@
 
        
   {{-- Profil (pindah ke kanan atas) --}}
-  <div class="flex items-center space-x-3 ml-auto">
-    <span class="hidden md:block text-gray-700 font-medium">Admin</span>
-    <img src="/images/profile.png" alt="Profile"
-      class="w-10 h-10 rounded-full border cursor-pointer">
-  </div>
+  {{-- Profil (pindah ke kanan atas) --}}
+<div class="flex items-center space-x-3 ml-auto">
+   <span class="hidden md:block text-gray-700 font-medium">
+    {{ $admin->nama_lengkap ?? 'Admin' }}
+</span>
+
+
+    <img 
+        src="{{ $admin->foto ? asset($admin->foto) : asset('admin/default.png') }}"
+        alt="Profile"
+        class="w-10 h-10 rounded-full border cursor-pointer object-cover">
+</div>
+
 </header>
 
       {{-- Main Content --}}

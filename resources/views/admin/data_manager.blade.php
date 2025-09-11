@@ -11,27 +11,30 @@
             {{ session('success') }}
         </div>
     @endif
-{{-- Error messages --}}
-@if ($errors->any())
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
-        <ul class="list-disc pl-5">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
+    {{-- Error messages --}}
+    @if ($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+            <ul class="list-disc pl-5">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     {{-- Tombol Tambah --}}
     <button onclick="document.getElementById('modalTambah').classList.remove('hidden')"
-        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mb-4">
-        + Tambah manager
+         class="bg-gradient-to-r from-[#2f4858] to-[#007b89] 
+         hover:from-[#007b89] hover:to-[#2f4858] 
+         text-white px-4 py-2 rounded mb-4 transition duration-300">
+        Tambah manager
     </button>
 
     {{-- Tabel --}}
-    <div class="overflow-x-auto">
-        <table class="min-w-full border border-gray-200 text-sm">
-            <thead class="bg-gray-800 text-white">
+    <div class="bg-white shadow rounded-lg p-6">
+        <table class="w-full border-collapse border border-gray-200 text-center">
+            <thead class="bg-gray-100">
                 <tr>
                     <th class="px-3 py-2">No</th>
                     <th class="px-3 py-2">Foto</th>
@@ -63,17 +66,40 @@
                     <td class="px-3 py-2">{{ $mng->tanggal_lahir }}</td>
                     <td class="px-3 py-2">{{ $mng->status }}</td>
                     <td class="px-3 py-2">{{ $mng->tanggal_masuk }}</td>
-                    <td class="px-3 py-2 space-x-1">
-                        {{-- Tombol Edit --}}
-                        <button onclick="document.getElementById('modalEdit{{ $mng->id }}').classList.remove('hidden')"
-                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded">Edit</button>
 
-                        {{-- Tombol Hapus --}}
-                        <form action="{{ route('admin.data_manager.destroy',$mng->id) }}" method="POST" class="inline"
-                            onsubmit="return confirm('Yakin ingin hapus?')">
-                            @csrf @method('DELETE')
-                            <button class="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded">Hapus</button>
-                        </form>
+                    {{-- Tombol Aksi --}}
+                    <td class="px-3 py-2">
+                        <div class="flex items-center justify-center space-x-2">
+                            {{-- Tombol Edit --}}
+                            <button onclick="document.getElementById('modalEdit{{ $mng->id }}').classList.remove('hidden')"
+                                class="px-3 py-2 rounded flex items-center space-x-1 
+                                       border border-yellow-500 text-yellow-500 
+                                       hover:bg-yellow-500 hover:text-white transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" 
+                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" 
+                                          d="M16.862 3.487a2.25 2.25 0 013.182 3.182L7.125 19.587l-4.243.707.707-4.243L16.862 3.487z" />
+                                </svg>
+                                <span>Edit</span>
+                            </button>
+
+                            {{-- Tombol Hapus --}}
+                            <form action="{{ route('admin.data_manager.destroy',$mng->id) }}" method="POST" 
+                                  onsubmit="return confirm('Yakin ingin hapus?')">
+                                @csrf @method('DELETE')
+                                <button 
+                                    class="px-3 py-2 rounded flex items-center space-x-1
+                                           border border-red-500 text-red-500
+                                           hover:bg-red-500 hover:text-white transition duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" 
+                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3m-9 0h10" />
+                                    </svg>
+                                    <span>Delete</span>
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
 
@@ -139,6 +165,7 @@
         </form>
     </div>
 </div>
+
 <style>
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }

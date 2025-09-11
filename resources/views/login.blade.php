@@ -11,7 +11,7 @@
 </head>
 
 <body class="relative min-h-screen flex items-center justify-center bg-cover bg-center"
-    style="background-image: url('https://images.unsplash.com/photo-1551836022-4c4c79ecde51?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+    style="background-image: url('{{ asset('asset/executives-working-together-project.jpg') }}')">
 
     <!-- Overlay Gelap -->
     <div class="absolute inset-0 bg-black bg-opacity-60 z-0"></div>

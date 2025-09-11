@@ -24,14 +24,16 @@
 
     {{-- Tombol Tambah --}}
     <button onclick="document.getElementById('modalTambah').classList.remove('hidden')"
-        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mb-4">
+        class="bg-gradient-to-r from-[#2f4858] to-[#007b89] 
+         hover:bg-gradient-to-r hover:from-[#007b89] hover:to-[#2f4858] 
+         text-white px-4 py-2 rounded mb-4 transition duration-300">
         Tambah Karyawan
     </button>
 
     {{-- Tabel --}}
-    <div class="overflow-x-auto bg-white rounded border">
-        <table class="min-w-full text-sm">
-            <thead class="bg-gray-100 text-gray-700">
+        <div class="bg-white shadow rounded-lg p-6">
+        <table class="w-full border-collapse border border-gray-200 text-center">
+            <thead class="bg-gray-100">
                 <tr>
                     <th class="px-3 py-2 text-left">No</th>
                     <th class="px-3 py-2">Foto</th>
@@ -69,15 +71,41 @@
                     <td class="px-3 py-2">{{ $kar->tanggal_masuk }}</td>
                     <td class="px-3 py-2 flex gap-1">
                         {{-- Edit --}}
-                        <button onclick="document.getElementById('modalEdit{{ $kar->id }}').classList.remove('hidden')"
-                            class="bg-yellow-400 text-white px-2 py-1 rounded">✏️</button>
+                      <button 
+    onclick="document.getElementById('modalEdit{{ $kar->id }}').classList.remove('hidden')"
+    class="px-3 py-2 rounded flex items-center space-x-1 
+           border border-yellow-500 text-yellow-500 
+           hover:bg-yellow-500 hover:text-white transition duration-300">
+    <!-- Icon Pensil Outline -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" 
+         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" 
+              d="M16.862 3.487a2.25 2.25 0 013.182 3.182L7.125 19.587l-4.243.707.707-4.243L16.862 3.487z" />
+    </svg>
+    <span>Edit</span>
+</button>
+
+
 
                         {{-- Hapus --}}
                         <form action="{{ route('admin.data_karyawan.destroy',$kar->id) }}" method="POST"
-                            onsubmit="return confirm('Yakin ingin hapus?')">
-                            @csrf @method('DELETE')
-                            <button class="bg-red-500 text-white px-2 py-1 rounded">🗑</button>
-                        </form>
+      onsubmit="return confirm('Yakin ingin hapus?')">
+    @csrf 
+    @method('DELETE')
+    <button 
+        class="px-3 py-2 rounded flex items-center space-x-1
+               border border-red-500 text-red-500
+               hover:bg-red-500 hover:text-white transition duration-300">
+        <!-- Icon Tempat Sampah Outline -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" 
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3m-9 0h10" />
+        </svg>
+        <span>Delete</span>
+    </button>
+</form>
+
                     </td>
                 </tr>
 
@@ -112,6 +140,8 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+</div>
     </div>
 </div>
 

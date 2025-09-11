@@ -7,11 +7,11 @@
 
     <!-- Ringkasan -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-green-500 text-white p-6 rounded-xl shadow">
+        <div class="bg-[#007b89] text-white p-6 rounded-xl shadow">
             <h3 class="text-lg">Jumlah Karyawan</h3>
             <p class="text-3xl font-bold">{{ $totalKaryawan }}</p>
         </div>
-        <div class="bg-pink-500 text-white p-6 rounded-xl shadow">
+        <div class="bg-[#2f4858] text-white p-6 rounded-xl shadow">
             <h3 class="text-lg">Laporan Dibuat</h3>
             <p class="text-3xl font-bold">{{ $laporanDibuat }}</p>
         </div>
@@ -24,11 +24,11 @@
 
 <div class="flex gap-2">
     <a href="{{ route('admin.laporan.exportPdf') }}" 
-       class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+       class="bg-[#007b89] text-white px-4 py-2 rounded hover:bg-red-600">
        Export PDF
     </a>
     <a href="{{ route('admin.laporan.exportExcel') }}" 
-       class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+       class="bg-[#2f4858] text-white px-4 py-2 rounded hover:bg-green-600">
        Export Excel
     </a>
 </div>
@@ -51,7 +51,7 @@
                 <td class="border px-4 py-2">{{ $laporan->karyawan->name ?? '-' }}</td>
                 <td class="border px-4 py-2">{{ $laporan->cuti }}</td>
                 <td class="border px-4 py-2">{{ $laporan->absensi }}</td>
-               <td class="border px-4 py-2 font-bold text-green-600">
+               <td class="border px-4 py-2 font-bold text-[#007b89]">
     Rp {{ number_format($laporan->karyawan->payrolls->sum('total_gaji'), 0, ',', '.') }}
 </td>
 

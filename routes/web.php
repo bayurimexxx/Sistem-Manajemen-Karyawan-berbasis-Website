@@ -10,6 +10,7 @@ use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CutiController;
+use App\Http\Controllers\admin\ProfileController;
 
 // ----------------- HOMEPAGE -----------------
 Route::get('/', function () {
@@ -87,6 +88,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('/cuti/{id}', [CutiController::class, 'update'])->name('cuti.update');
 });
 Route::get('/admin/laporan/export-excel', [LaporanController::class, 'exportExcel'])->name('admin.laporan.exportExcel');
+
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+});
 
 
 });

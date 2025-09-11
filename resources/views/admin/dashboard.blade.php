@@ -8,17 +8,17 @@
 
    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-    <div class="bg-gradient-to-r from-green-400 to-green-600 text-white p-6 rounded-2xl shadow-lg">
+    <div class="bg-[#009588] text-white p-6 rounded-2xl shadow-lg">
         <h3 class="text-lg">Jumlah Karyawan</h3>
         <p class="text-3xl font-bold">{{ $totalKaryawan }}</p>
     </div>
 
-    <div class="bg-gradient-to-r from-blue-400 to-blue-600 text-white p-6 rounded-2xl shadow-lg">
+    <div class="bg-[#007b89] text-white p-6 rounded-2xl shadow-lg">
         <h3 class="text-lg">Jumlah Pengajuan Cuti (Pending)</h3>
         <p class="text-3xl font-bold">{{ $totalCutiPending }}</p>
     </div>
 
-    <div class="bg-gradient-to-r from-indigo-400 to-indigo-600 text-white p-6 rounded-2xl shadow-lg">
+    <div class="bg-[#2f4858] text-white p-6 rounded-2xl shadow-lg">
         <h3 class="text-lg">Karyawan Sedang Cuti (Disetujui)</h3>
         <p class="text-3xl font-bold">{{ $totalCutiDisetujui }}</p>
     </div>
@@ -53,12 +53,12 @@
                 {
                     label: 'Pengajuan Cuti (Pending)',
                     data: @json($cutiPendingBulanan),
-                    backgroundColor: '#06b6d4'
+                    backgroundColor: '#007b89'
                 },
                 {
                     label: 'Karyawan Sedang Cuti (Disetujui)',
                     data: @json($cutiDisetujuiBulanan),
-                    backgroundColor: '#6366f1'
+                    backgroundColor: '#2f4858'
                 }
             ]
         },

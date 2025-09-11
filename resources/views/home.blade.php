@@ -16,15 +16,20 @@
 
     <!-- Navbar -->
     <nav id="navbar"
-        class="bg-gray-900/80 backdrop-blur text-white px-6 py-4 flex justify-between items-center fixed w-full z-50 transition-all duration-300">
+        class="bg-gradient-to-r from-[#2f4858] to-[#007b89] 
+         hover:bg-gradient-to-r backdrop-blur text-white px-6 py-4 flex justify-between items-center fixed w-full z-50 transition-all duration-300">
         <div class="flex items-center space-x-2">
-            <span class="text-2xl animate-pulse">★</span>
-            <span class="font-bold text-lg">Peradaban Gemilang</span>
+            
+            <div class="flex items-left justify-left">
+    <img src="{{ asset('asset/image-removebg-preview.png') }}" 
+
+         class="w-36 h-auto">
+  </div>
         </div>
 
         <div class="flex items-center space-x-4">
             <a href="{{ route('login') }}"
-                class="transition bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 hover:-translate-y-1 hover:scale-105 duration-300">
+                class="transition bg-[#2f4858] text-white px-4 py-2 rounded-md hover:bg-gray-700 hover:-translate-y-1 hover:scale-105 duration-300">
                 Login
             </a>
 
@@ -49,17 +54,18 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative bg-cover bg-center h-screen"
-        style="background-image: url('https://images.unsplash.com/photo-1551836022-4c4c79ecde51?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
-        <div class="absolute inset-0 bg-black/50"></div>
-        <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4" id="typing"></h1>
-            <p class="max-w-2xl text-lg md:text-xl" data-aos="fade-up" data-aos-delay="300">
-                Sistem ini membantu perusahaan mengatur data karyawan, absensi, dan laporan dengan cepat, aman, dan
-                efisien.
-            </p>
-        </div>
-    </section>
+  <section class="relative bg-cover bg-center h-screen"
+    style="background-image: url('{{ asset('asset/executives-working-together-project.jpg') }}')">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4" id="typing"></h1>
+        <p class="max-w-2xl text-lg md:text-xl" data-aos="fade-up" data-aos-delay="300">
+            Sistem ini membantu perusahaan mengatur data karyawan, absensi, dan laporan dengan cepat, aman, dan
+            efisien.
+        </p>
+    </div>
+</section>
+
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden mt-2 space-y-1">
