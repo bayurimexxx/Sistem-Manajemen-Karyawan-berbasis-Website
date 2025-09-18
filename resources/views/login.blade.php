@@ -41,14 +41,16 @@
                     class="mt-1 w-full px-4 py-2 rounded-lg bg-white/90 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
             </div>
 
-            <button type="submit"
-                class="w-full bg-indigo-600 hover:bg-indigo-700 transition-colors py-2 rounded-lg font-semibold flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="currentColor" viewBox="0 0 16 16">
-                    <path
-                        d="M6 3a1 1 0 0 1 1 1v2h5.5a.5.5 0 0 1 0 1H7v2h5.5a.5.5 0 0 1 0 1H7v2a1 1 0 0 1-2 0V4a1 1 0 0 1 1-1z" />
-                </svg>
-                Masuk
-            </button>
+           <button type="submit"
+    class="w-full flex items-center justify-center
+           bg-gradient-to-r from-[#2f4858] to-[#007b89] text-white' : 'hover:bg-gradient-to-r from-[#2f4858] to-[#007b89] 
+           text-white px-4 py-2 rounded mb-4 transition duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M6 3a1 1 0 0 1 1 1v2h5.5a.5.5 0 0 1 0 1H7v2h5.5a.5.5 0 0 1 0 1H7v2a1 1 0 0 1-2 0V4a1 1 0 0 1 1-1z"/>
+    </svg>
+    Masuk
+</button>
+
         </form>
         <!-- Tombol kembali ke Homepage -->
         <a href="{{ route('home') }}" class="block mt-4 text-center text-gray-200 hover:text-indigo-400 transition">

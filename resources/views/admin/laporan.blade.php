@@ -7,11 +7,11 @@
 
     <!-- Ringkasan -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-[#007b89] text-white p-6 rounded-xl shadow">
+        <div class="bg-[#007b89] text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition">
             <h3 class="text-lg">Jumlah Karyawan</h3>
             <p class="text-3xl font-bold">{{ $totalKaryawan }}</p>
         </div>
-        <div class="bg-[#2f4858] text-white p-6 rounded-xl shadow">
+        <div class="bg-[#2f4858] text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition">
             <h3 class="text-lg">Laporan Dibuat</h3>
             <p class="text-3xl font-bold">{{ $laporanDibuat }}</p>
         </div>

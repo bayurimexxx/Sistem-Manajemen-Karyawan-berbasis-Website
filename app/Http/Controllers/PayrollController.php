@@ -15,17 +15,45 @@ class PayrollController extends Controller
 
         // Hitung ringkasan
         $totalKaryawan = $karyawans->count();
-        $totalGaji = $payrolls->sum('total_gaji');
-        $sudahDibayar = $payrolls->where('status', 'Dibayar')->count();
+        $totalGajiDibayar = $payrolls->where('status', 'Dibayar')->sum('total_gaji');
+        $sudahDibayar     = $payrolls->where('status', 'Dibayar')->count();
 
-        return view('admin.payroll', compact(
-            'payrolls',
-            'karyawans',
-            'totalKaryawan',
-            'totalGaji',
-            'sudahDibayar'
-        ));
+
+       return view('admin.payroll', compact(
+    'payrolls',
+    'karyawans',
+    'totalKaryawan',
+    'totalGajiDibayar',
+    'sudahDibayar'
+));
+
     }
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'karyawan_id' => 'required|exists:karyawans,id',
+        'gaji_pokok' => 'required|numeric',
+        'tunjangan'  => 'required|numeric',
+        'potongan'   => 'required|numeric',
+        'periode'    => 'required|date',
+        'status'     => 'required|in:Dibayar,Belum Dibayar',
+    ]);
+
+    $totalGaji = $request->gaji_pokok + $request->tunjangan - $request->potongan;
+
+    $payroll = Payroll::findOrFail($id);
+    $payroll->update([
+        'karyawan_id' => $request->karyawan_id,
+        'gaji_pokok'  => $request->gaji_pokok,
+        'tunjangan'   => $request->tunjangan,
+        'potongan'    => $request->potongan,
+        'total_gaji'  => $totalGaji,
+        'periode'     => $request->periode,
+        'status'      => $request->status,
+    ]);
+
+    return redirect()->route('admin.payroll.index')->with('success', 'Data payroll berhasil diperbarui');
+}
 
     public function store(Request $request)
     {

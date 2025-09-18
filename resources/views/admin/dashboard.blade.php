@@ -8,17 +8,17 @@
 
    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-    <div class="bg-[#009588] text-white p-6 rounded-2xl shadow-lg">
+    <div class="bg-[#009588] text-white p-6 p-6 rounded-2xl shadow-lg transform hover:scale-105 transition">
         <h3 class="text-lg">Jumlah Karyawan</h3>
         <p class="text-3xl font-bold">{{ $totalKaryawan }}</p>
     </div>
 
-    <div class="bg-[#007b89] text-white p-6 rounded-2xl shadow-lg">
+    <div class="bg-[#007b89] text-white p-6 p-6 rounded-2xl shadow-lg transform hover:scale-105 transition">
         <h3 class="text-lg">Jumlah Pengajuan Cuti (Pending)</h3>
         <p class="text-3xl font-bold">{{ $totalCutiPending }}</p>
     </div>
 
-    <div class="bg-[#2f4858] text-white p-6 rounded-2xl shadow-lg">
+    <div class="bg-[#2f4858] text-white p-6 p-6 rounded-2xl shadow-lg transform hover:scale-105 transition">
         <h3 class="text-lg">Karyawan Sedang Cuti (Disetujui)</h3>
         <p class="text-3xl font-bold">{{ $totalCutiDisetujui }}</p>
     </div>

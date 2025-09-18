@@ -11,15 +11,16 @@
                 <h3 class="text-lg">Jumlah Karyawan</h3>
                 <p class="text-3xl font-bold">{{ $totalKaryawan }}</p>
             </div>
-            <div class="bg-[#007b89] text-white rounded-xl p-6 shadow">
-                <p class="text-2xl font-bold">Rp {{ number_format($totalGaji, 0, ',', '.') }}</p>
+            <div class="bg-[#007b89] text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition">
+                <p class="text-2xl font-bold">Rp {{ number_format($totalGajiDibayar, 0, ',', '.') }}</p>
                 <p>Total Gaji Dibayarkan</p>
             </div>
-            <div class="bg-[#2f4858] text-white rounded-xl p-6 shadow">
+            <div class="bg-[#2f4858] text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition">
                 <p class="text-2xl font-bold">{{ $sudahDibayar }}</p>
                 <p>Sudah Dibayar</p>
             </div>
         </div>
+        
 
         <!-- Data Payroll -->
         <div class="bg-white rounded-xl shadow p-4">
@@ -33,57 +34,99 @@
                 </button>
             </div>
 
-            <table class="w-full border-collapse border border-gray-300">
-                <thead class="bg-gray-200">
-                    <tr>
-                        <th class="border border-gray-300 p-2">No</th>
-                        <th class="border border-gray-300 p-2">Nama Karyawan</th>
-                        <th class="border border-gray-300 p-2">Jabatan</th>
-                        <th class="border border-gray-300 p-2">Gaji Pokok</th>
-                        <th class="border border-gray-300 p-2">Tunjangan</th>
-                        <th class="border border-gray-300 p-2">Potongan</th>
-                        <th class="border border-gray-300 p-2">Total Gaji</th>
-                        <th class="border border-gray-300 p-2">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($payrolls as $index => $payroll)
-                        <tr>
-                            <td class="border p-2">{{ $index+1 }}</td>
-                            <td class="border p-2">{{ $payroll->karyawan->name ?? '-' }}</td>
-                            <td class="border p-2">{{ $payroll->karyawan->jabatan ?? '-' }}</td>
-                            <td class="border p-2">Rp {{ number_format($payroll->gaji_pokok, 0, ',', '.') }}</td>
-                            <td class="border p-2">Rp {{ number_format($payroll->tunjangan, 0, ',', '.') }}</td>
-                            <td class="border p-2">Rp {{ number_format($payroll->potongan, 0, ',', '.') }}</td>
-                            <td class="border p-2 font-bold">Rp {{ number_format($payroll->total_gaji, 0, ',', '.') }}</td>
-                            <td class="border p-2">
-                                <form action="{{ route('admin.payroll.destroy', $payroll->id) }}" 
-                                      method="POST" 
-                                      onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button 
-        class="px-3 py-2 rounded flex items-center space-x-1
-               border border-red-500 text-red-500
-               hover:bg-red-500 hover:text-white transition duration-300">
-        <!-- Icon Tempat Sampah Outline -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" 
-                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3m-9 0h10" />
-        </svg>
-        <span>Delete</span>
-    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="8" class="text-center p-4">Belum ada data payroll</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+           <table class="w-full border-collapse border border-gray-300">
+    <thead class="bg-gray-200">
+        <tr>
+            <th class="border border-gray-300 p-2">No</th>
+            <th class="border border-gray-300 p-2">Nama Karyawan</th>
+            <th class="border border-gray-300 p-2">Jabatan</th>
+            <th class="border border-gray-300 p-2">Gaji Pokok</th>
+            <th class="border border-gray-300 p-2">Tunjangan</th>
+            <th class="border border-gray-300 p-2">Potongan</th>
+            <th class="border border-gray-300 p-2">Total Gaji</th>
+            <th class="border border-gray-300 p-2">Status</th> <!-- 👈 Tambah status -->
+            <th class="border border-gray-300 p-2">Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @forelse($payrolls as $index => $payroll)
+            <tr>
+                <td class="border p-2">{{ $index+1 }}</td>
+                <td class="border p-2">{{ $payroll->karyawan->name ?? '-' }}</td>
+                <td class="border p-2">{{ $payroll->karyawan->jabatan ?? '-' }}</td>
+                <td class="border p-2">Rp {{ number_format($payroll->gaji_pokok, 0, ',', '.') }}</td>
+                <td class="border p-2">Rp {{ number_format($payroll->tunjangan, 0, ',', '.') }}</td>
+                <td class="border p-2">Rp {{ number_format($payroll->potongan, 0, ',', '.') }}</td>
+                <td class="border p-2 font-bold">Rp {{ number_format($payroll->total_gaji, 0, ',', '.') }}</td>
+                <td class="border p-2">
+                    <span class="px-3 py-1 rounded hover:text-white transition duration-300 
+                        {{ $payroll->status == 'Dibayar' ? 'rounded flex items-center space-x-1 
+                                       border border-green-500 text-green-500 
+                                       hover:bg-green-500' : 'rounded flex items-center space-x-1 
+                                       border border-red-500 text-red-500 
+                                       hover:bg-red-500' }}">
+                        {{ $payroll->status }}
+                    </span>
+                </td>
+                <td class="border p-2 flex gap-2">
+                    <!-- Tombol Edit -->
+                    <button onclick="document.getElementById('modalEdit{{ $payroll->id }}').classList.remove('hidden')"
+                           class="px-3 py-1 rounded flex items-center space-x-1 
+                                       border border-yellow-500 text-yellow-500 
+                                       hover:bg-yellow-500 hover:text-white transition duration-300">
+                        Edit
+                    </button>
+
+                    <!-- Tombol Hapus -->
+                    <form action="{{ route('admin.payroll.destroy',$payroll->id) }}" method="POST"
+                          onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                        @csrf @method('DELETE')
+                        <button  class="px-3 py-1 rounded flex items-center space-x-1
+                                           border border-red-500 text-red-500
+                                           hover:bg-red-500 hover:text-white transition duration-300">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+
+            <!-- 🔹 Modal Edit Payroll -->
+            <div id="modalEdit{{ $payroll->id }}" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white w-full max-w-lg p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4">Edit Payroll</h3>
+                    <form action="{{ route('admin.payroll.update',$payroll->id) }}" method="POST">
+                        @csrf @method('PUT')
+                        <div class="space-y-3">
+                            <select name="karyawan_id" class="w-full border px-3 py-2 rounded" required>
+                                @foreach($karyawans as $karyawan)
+                                    <option value="{{ $karyawan->id }}" {{ $payroll->karyawan_id == $karyawan->id ? 'selected' : '' }}>
+                                        {{ $karyawan->name }} - {{ $karyawan->jabatan }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <input type="number" name="gaji_pokok" value="{{ $payroll->gaji_pokok }}" class="w-full border px-3 py-2 rounded" required>
+                            <input type="number" name="tunjangan" value="{{ $payroll->tunjangan }}" class="w-full border px-3 py-2 rounded" required>
+                            <input type="number" name="potongan" value="{{ $payroll->potongan }}" class="w-full border px-3 py-2 rounded" required>
+                            <input type="date" name="periode" value="{{ $payroll->periode }}" class="w-full border px-3 py-2 rounded" required>
+                            <select name="status" class="w-full border px-3 py-2 rounded">
+                                <option value="Dibayar" {{ $payroll->status == 'Dibayar' ? 'selected' : '' }}>Dibayar</option>
+                                <option value="Belum Dibayar" {{ $payroll->status == 'Belum Dibayar' ? 'selected' : '' }}>Belum Dibayar</option>
+                            </select>
+                        </div>
+                        <div class="mt-4 flex justify-end gap-2">
+                            <button type="button" onclick="document.getElementById('modalEdit{{ $payroll->id }}').classList.add('hidden')"
+                                    class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">Batal</button>
+                            <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @empty
+            <tr>
+                <td colspan="9" class="text-center p-4">Belum ada data payroll</td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
+
         </div>
     </div>
 </div>

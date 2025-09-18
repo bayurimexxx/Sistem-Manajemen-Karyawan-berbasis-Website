@@ -73,7 +73,7 @@
                         {{-- Edit --}}
                       <button 
     onclick="document.getElementById('modalEdit{{ $kar->id }}').classList.remove('hidden')"
-    class="px-3 py-2 rounded flex items-center space-x-1 
+    class="px-3 py-1 rounded flex items-center space-x-1 
            border border-yellow-500 text-yellow-500 
            hover:bg-yellow-500 hover:text-white transition duration-300">
     <!-- Icon Pensil Outline -->
@@ -93,7 +93,7 @@
     @csrf 
     @method('DELETE')
     <button 
-        class="px-3 py-2 rounded flex items-center space-x-1
+        class="px-3 py-1 rounded flex items-center space-x-1
                border border-red-500 text-red-500
                hover:bg-red-500 hover:text-white transition duration-300">
         <!-- Icon Tempat Sampah Outline -->
@@ -176,7 +176,12 @@
 
 {{-- Animasi --}}
 <style>
-@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-.animate-fade-in { animation: fadeIn 0.3s ease-out; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
 </style>
 @endsection
